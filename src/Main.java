@@ -2,6 +2,6 @@ package src;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        MathUtils.subtract(-Integer.MAX_VALUE, 10);
     }
 }
