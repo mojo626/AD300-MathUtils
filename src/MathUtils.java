@@ -10,11 +10,11 @@ public class MathUtils {
             result = Math.addExact(a, b);
         } catch (ArithmeticException ex) {
             BigInteger bigInt = new BigInteger(a + "");
-            bigInt.add(new BigInteger(b + ""));
+            BigInteger bigResult = bigInt.add(new BigInteger(b + ""));
 
-            if (bigInt.signum() == 1) {
+            if (bigResult.signum() == 1) {
                 return Integer.MAX_VALUE;
-            } else if (bigInt.signum() == 0) {
+            } else if (bigResult.signum() == 0) {
                 return 0;
             } else {
                 return Integer.MIN_VALUE;
@@ -30,11 +30,11 @@ public class MathUtils {
             result = Math.subtractExact(a, b);
         } catch (ArithmeticException ex) {
             BigInteger bigInt = new BigInteger(a + "");
-            bigInt.subtract(new BigInteger(b + ""));
+            BigInteger bigResult = bigInt.subtract(new BigInteger(b + ""));
 
-            if (bigInt.signum() == 1) {
+            if (bigResult.signum() == 1) {
                 return Integer.MAX_VALUE;
-            } else if (bigInt.signum() == 0) {
+            } else if (bigResult.signum() == 0) {
                 return 0;
             } else {
                 return Integer.MIN_VALUE;
@@ -50,11 +50,12 @@ public class MathUtils {
             result = Math.multiplyExact(a, b);
         } catch (ArithmeticException ex) {
             BigInteger bigInt = new BigInteger(a + "");
-            bigInt.multiply(new BigInteger(b + ""));
 
-            if (bigInt.signum() == 1) {
+            BigInteger bigResult = bigInt.multiply(new BigInteger(b + ""));
+
+            if (bigResult.signum() == 1) {
                 return Integer.MAX_VALUE;
-            } else if (bigInt.signum() == 0) {
+            } else if (bigResult.signum() == 0) {
                 return 0;
             } else {
                 return Integer.MIN_VALUE;
@@ -64,11 +65,14 @@ public class MathUtils {
         return result;
     }
 
+    //don't need to check for overflow since double limit is much higher than that of int
     public static double divide(int a, int b) {
         if (b == 0) {
             return Double.NaN;
         }
 
-        return (double) a / b;
+        double result = (double)a / b;
+
+        return result;
     }
 }
